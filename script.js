@@ -6,28 +6,29 @@
 
 import { getUserIds, getData, setData } from "./storage.js";
 
+const userSelect = document.getElementById("user-select");
+const bookmarkList = document.getElementById("bookmark-list");
+
 window.onload = function () {
-  const userSelect = document.getElementById("user-select");
-  const bookmarkList = document.getElementById("bookmark-list");
-  setData("1", [
-    {
-      title: "MDN Web Docs",
-      url: "https://developer.mozilla.org",
-      description: "Best place to learn HTML/JS.",
-    },
-    {
-      title: "CodeYourFuture",
-      url: "https://codeyourfuture.io",
-      description: "Our bootcamp website.",
-    },
-  ]);
-  setData("2", [
-    {
-      title: "GitHub",
-      url: "https://github.com",
-      description: "Where we save our code.",
-    },
-  ]);
+  const allUsers = ["1", "2", "3", "4", "5"];
+
+  allUsers.forEach((userId) => {
+    const existingData = getData(userId);
+
+    if (!existingData || existingData.length === 0) {
+      setData(userId, [
+        {
+          title: `Project Ready Bookmark ${userId}`,
+          url: "https://codeyourfuture.io",
+          description:
+            "This bookmark has the correct data structure for the final project.",
+          createdAt: Date.now() - userId * 1000,
+          likes: 0,
+        },
+      ]);
+    }
+  });
+
   const users = getUserIds();
   users.forEach((userId) => {
     const option = document.createElement("option");
@@ -49,10 +50,18 @@ window.onload = function () {
     if (bookmarks.length === 0) {
       bookmarkList.innerHTML = "<li>No bookmarks found for this user.</li>";
     } else {
+      bookmarks.sort((a, b) => b.createdAt - a.createdAt);
       bookmarkList.innerHTML = bookmarks
         .map(
-          (bookmark) =>
-            `<li><a href="${bookmark.url}" target="_blank">${bookmark.title}</a> - ${bookmark.description}</li>`,
+          (bookmark) => `
+           <li class="bookmark-card">
+              <h3><a href="${bookmark.url}" target="_blank">${bookmark.title}</a></h3>
+              <p>${bookmark.description}</p>
+              <small>Added on: ${new Date(bookmark.createdAt).toLocaleString()}</small>
+              <br>
+              <button disabled>❤️ Likes: ${bookmark.likes}</button>
+            </li>
+          `,
         )
         .join("");
     }
