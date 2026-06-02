@@ -10,7 +10,7 @@ const userSelect = document.getElementById("user-select");
 const bookmarkList = document.getElementById("bookmark-list");
 
 window.onload = function () {
-  const allUsers = ["1", "2", "3", "4", "5"];
+  const allUsers = getUserIds();
 
   allUsers.forEach((userId) => {
     const existingData = getData(userId);
