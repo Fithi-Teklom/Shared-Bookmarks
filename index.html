@@ -1,6 +1,8 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <title>Shared Bookmarks</title>
     <script type="module" src="script.js"></script>
   </head>
   <body>
@@ -10,5 +12,19 @@
       <option value="">--Please choose an option--</option>
     </select>
     <ul id="bookmark-list"></ul>
+    <div>
+      <form id="bookmark-form">
+        <label for="title">Title</label>
+        <input id="title" required /> <br>
+
+        <label for="url">URL</label>
+        <input id="url" type="url" required /><br>
+
+        <label for="description">Description</label>
+        <textarea id="description" required></textarea><br>
+
+        <button type="submit">Add Bookmark</button>
+      </form>
+    </div>
   </body>
 </html>
