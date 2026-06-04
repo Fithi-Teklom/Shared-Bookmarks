@@ -2,29 +2,30 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css" />
     <title>Shared Bookmarks</title>
     <script type="module" src="script.js"></script>
   </head>
   <body>
-    <h1>Shared Bookmarks</h1>
-    <label for="user-select">Choose a User:</label>
-    <select id="user-select">
-      <option value="">--Please choose an option--</option>
-    </select>
-    <ul id="bookmark-list"></ul>
-    <div>
+    <main>
+      <h1>Shared Bookmarks</h1>
+      <label for="user-select">Choose a User:</label>
+      <select id="user-select">
+        <option value="">--Please choose an option--</option>
+      </select>
+      <ul id="bookmark-list"></ul>
       <form id="bookmark-form">
-        <label for="title">Title</label>
-        <input id="title" required /> <br>
+        <label for="title" type="text">Title</label>
+        <input id="title" required /> <br />
 
-        <label for="url">URL</label>
-        <input id="url" type="url" required /><br>
+        <label for="url" type="url">URL</label>
+        <input id="url" type="url" required /><br />
 
-        <label for="description">Description</label>
-        <textarea id="description" required></textarea><br>
+        <label for="description" type="text">Description</label>
+        <textarea id="description" required></textarea><br />
 
-        <button type="submit">Add Bookmark</button>
+        <button type="submit" type="text">Add Bookmark</button>
       </form>
-    </div>
+    </main>
   </body>
 </html>
