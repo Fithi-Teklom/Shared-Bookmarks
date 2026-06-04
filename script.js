@@ -1,3 +1,4 @@
+import { sortBookmarks } from "./sortBookmarks.js";
 import { getUserIds, getData, setData } from "./storage.js";
 
 const userSelect = document.getElementById("user-select");
@@ -42,13 +43,11 @@ function renderBookmarks(userId) {
     };
   });
 
-  bookmarksWithIndex.sort((a, b) => {
-    return b.bookmark.createdAt - a.bookmark.createdAt;
-  });
+  const sortedBookmarks = sortBookmarks(bookmarksWithIndex);
 
   bookmarkList.innerHTML = "";
 
-  bookmarksWithIndex.forEach((item) => {
+  sortedBookmarks.forEach((item) => {
     const bookmark = item.bookmark;
     const originalIndex = item.index;
 
